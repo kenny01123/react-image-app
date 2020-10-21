@@ -13,18 +13,22 @@ export default function App() {
   const [renderTime, setTime] = useState(0);
   async function renderPhoto() {
     let listOfPhotos = await listObjects();
-    let promises = await Promise.all(
-      listOfPhotos.map(x => getSingleObject(x.Key))
-    );
-    setPhotos(promises);
+    //console.log(await getSingleObject(listOfPhotos[0].Key))
+    let promises = Promise.all(listOfPhotos.map(x => getSingleObject(x.Key)));
+    let arr = await promises;
   }
   //initial render
   useEffect(() => {
     renderPhoto();
   }, []);
 
-  function displayPhotos() {
-    console.log(photos);
+  // function displayPhotos() {
+  //   return photos.map(code=> <img src={`data:image/jpeg;base64,${code}`}/>);
+  // }
+
+  function sayHi() {
+    const arr = [1, 2, 3];
+    return arr.map(x => <p>{x}</p>);
   }
   function PhotoType({ view }) {
     if (view === "AllPhotos") {
@@ -33,14 +37,12 @@ export default function App() {
       return <SinglePhoto />;
     }
   }
-  function sayHi() {
-    return <p>hi!</p>;
-  }
+
   return (
     <div className="app">
       <Navbar setCurrentView={setCurrentView} currentView={currentView} />
-      <h1>Welcome</h1>
-      <p>{JSON.stringify(photos)}</p>
+      {sayHi()}
+      <p>{photos}</p>
       <PhotoType view={currentView} />
     </div>
   );
