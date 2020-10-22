@@ -12,7 +12,8 @@ body {
 }
 
 .image {
-  cursor: pointer;
+  width: 200px;
+  height: 200px;
 }
 
 .single-photo {
