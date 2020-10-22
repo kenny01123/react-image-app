@@ -3,24 +3,12 @@ import "../styles/styles.css";
 import AllPhotos from "./AllPhotos.jsx";
 import Navbar from "./Navbar.jsx";
 import SinglePhoto from "./SinglePhoto.jsx";
-import Upload from "./Upload.jsx";
-import { listObjects, getSingleObject, saveObject } from "../utils/index";
+import { listObjects, getSingleObject } from "../utils/index";
 
 export default function App() {
   const [photos, setPhotos] = useState([]);
-  const [selectPhoto, setSelectPhoto] = useState("String");
-  const [currentView, setCurrentView] = useState("");
-  const [renderTime, setTime] = useState(0);
-
-  async function getPhotos() {
-    //get photos from db
-    let listOfPhotos = await listObjects();
-
-    let promises = Promise.all(listOfPhotos.map(x => getSingleObject(x.Key)));
-    let arrBase64 = await promises;
-    //set photos to state
-    setPhotos(arrBase64);
-  }
+  const [selectPhoto, setSelectPhoto] = useState(null);
+  const [currentView, setCurrentView] = useState("AllPhotos");
 
   useEffect(() => {
     getPhotos();
@@ -36,11 +24,20 @@ export default function App() {
     setPhotos(arrBase64);
   }
 
-  function PhotoType({ view }) {
+  function PhotoType(view) {
+    console.log(view);
     if (view === "AllPhotos") {
-      return <AllPhotos />;
+      return (
+        <AllPhotos
+          setPhotos={setPhotos}
+          setCurrentView={setCurrentView}
+          photos={photos}
+          setSelectPhoto={setSelectPhoto}
+          selectPhoto={selectPhoto}
+        />
+      );
     } else {
-      return <SinglePhoto />;
+      return <SinglePhoto photos={photos} selectPhoto={selectPhoto} />;
     }
   }
 
@@ -52,9 +49,7 @@ export default function App() {
         setPhotos={setPhotos}
         photos={photos}
       />
-      <AllPhotos setPhotos={setPhotos} photos={photos} />
-      <p>{photos}</p>
-      <PhotoType view={currentView} />
+      {PhotoType(currentView)}
     </div>
   );
 }

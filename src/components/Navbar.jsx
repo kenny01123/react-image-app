@@ -1,8 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import "../styles/navbar.css";
-import _ from "lodash";
 import Upload from "./Upload.jsx";
-import { listObjects, getSingleObject, saveObject } from "../utils/index";
+import { saveObject } from "../utils/index";
 import { useEffect } from "react";
 
 export default function Navbar({ setCurrentView, setPhotos, photos }) {
