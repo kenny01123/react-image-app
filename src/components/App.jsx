@@ -11,20 +11,18 @@ export default function App() {
   const [selectPhoto, setSelectPhoto] = useState("String");
   const [currentView, setCurrentView] = useState("");
   const [renderTime, setTime] = useState(0);
-  async function renderPhoto() {
-    let listOfPhotos = await listObjects();
-    //console.log(await getSingleObject(listOfPhotos[0].Key))
-    let promises = Promise.all(listOfPhotos.map(x => getSingleObject(x.Key)));
-    let arr = await promises;
-  }
   //initial render
-  useEffect(() => {
-    renderPhoto();
-  }, []);
 
+  useEffect(() => {
+    console.log("rendered again!");
+  }, [photos]);
   // function displayPhotos() {
   //   return photos.map(code=> <img src={`data:image/jpeg;base64,${code}`}/>);
   // }
+
+  function displayPhotos() {
+    return photos.map(code => <img src={"data:image;base64" + code} />);
+  }
 
   function sayHi() {
     const arr = [1, 2, 3];
@@ -40,9 +38,15 @@ export default function App() {
 
   return (
     <div className="app">
-      <Navbar setCurrentView={setCurrentView} currentView={currentView} />
-      {sayHi()}
+      <Navbar
+        setCurrentView={setCurrentView}
+        currentView={currentView}
+        setPhotos={setPhotos}
+        photos={photos}
+      />
+      <AllPhotos setPhotos={setPhotos} photos={photos} />
       <p>{photos}</p>
+      {sayHi()}
       <PhotoType view={currentView} />
     </div>
   );
