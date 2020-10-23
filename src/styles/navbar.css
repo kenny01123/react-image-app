@@ -8,4 +8,9 @@
 .navbar-header {
   cursor: pointer;
   margin-right: auto;
+  margin-left: 6.5%;
+}
+
+#allPhoto {
+  margin-right: 40px;
 }

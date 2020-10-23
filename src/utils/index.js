@@ -26,7 +26,7 @@ export function listObjects() {
       }
       const length = data.Contents.length;
       console.log("length", length);
-      resolve(data.Contents.slice(80, 150));
+      resolve(data.Contents.slice(90, 160));
     });
   });
 

@@ -39,7 +39,7 @@ export default function AllPhotos({
   // />
   // }
 
-  return <div>{renderPhoto()}</div>;
+  return <div className="imageCell">{renderPhoto()}</div>;
 }
 
 // ({photos.length ? <div>{renderPhoto}</div> : <p>loading...</p>}) ;

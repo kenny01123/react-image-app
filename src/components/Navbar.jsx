@@ -27,6 +27,7 @@ export default function Navbar({
       <h1 className="navbar-header">Clay and Kenny 's 西</h1>
       <button
         className="navbar-header"
+        id="allPhoto"
         onClick={() => {
           console.log("I'm clicked!");
           setCurrentView("AllPhotos");
