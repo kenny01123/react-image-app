@@ -17,7 +17,6 @@ export default function App() {
   async function getPhotos() {
     //get photos from db
     let listOfPhotos = await listObjects();
-
     let promises = Promise.all(listOfPhotos.map(x => getSingleObject(x.Key)));
     let arrBase64 = await promises;
     //set photos to state
@@ -48,6 +47,7 @@ export default function App() {
         currentView={currentView}
         setPhotos={setPhotos}
         photos={photos}
+        getPhotos={getPhotos}
       />
       {PhotoType(currentView)}
     </div>

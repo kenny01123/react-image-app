@@ -24,9 +24,12 @@ export function listObjects() {
         console.error("error: ", error);
         return;
       }
-      resolve(data.Contents.slice(5, 15));
+      const length = data.Contents.length;
+      console.log("length", length);
+      resolve(data.Contents.slice(80, 150));
     });
   });
+
   return listObjects;
 }
 
@@ -72,3 +75,5 @@ export function saveObject(file) {
 
   return saveObject;
 }
+
+//saveObject.Body.toString("base64")

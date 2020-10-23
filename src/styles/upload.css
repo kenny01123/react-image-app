@@ -10,3 +10,7 @@
 button {
   height: 2rem;
 }
+
+.file-upload {
+  display: none;
+}

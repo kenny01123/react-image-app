@@ -6,11 +6,14 @@ export default function SinglePhoto({ photos, selectPhoto }) {
       console.log(selectPhoto);
       let photo64 = photos[selectPhoto];
       return (
-        <img
-          key="image"
-          alt="singlePhoto"
-          src={"data:image/png;base64," + photo64}
-        />
+        <div className="singleDiv">
+          <img
+            key="image"
+            alt="singlePhoto"
+            src={"data:image/;base64," + photo64}
+            className="single-photo"
+          />
+        </div>
       );
     }
   }

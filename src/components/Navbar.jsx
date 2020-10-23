@@ -3,17 +3,24 @@ import "../styles/navbar.css";
 import Upload from "./Upload.jsx";
 import { saveObject } from "../utils/index";
 import { useEffect } from "react";
-
-export default function Navbar({ setCurrentView, setPhotos, photos }) {
+import AWS from "aws-sdk";
+export default function Navbar({
+  setCurrentView,
+  setPhotos,
+  photos,
+  renderTime,
+  renderAgain,
+  getPhotos
+}) {
   const fileRef = useRef();
   function callback(file) {
-    console.log("hi", file);
-    setPhotos([...photos, file]);
-    saveObject(file);
-    // document.getElementById("file-input").click();
-    // saveObject(document.getElementById("file-input").value).catch("error");
+    console.log(file);
+    save(file);
+    window.location.reload(false);
   }
-
+  async function save(file) {
+    return await saveObject(file);
+  }
   useEffect(() => console.log("ref", fileRef.current), []);
   return (
     <div className="navbar">
